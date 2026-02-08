@@ -1,0 +1,173 @@
+Project Creation Commands
+
+# Create new projects
+
+dotnet new console -n MyApp          # Console application
+dotnet new webapi -n MyApi          # Web API project
+dotnet new mvc -n MyWebApp          # MVC web application
+dotnet new classlib -n MyLibrary    # Class library
+dotnet new xunit -n MyTests         # xUnit test project
+dotnet new sln                      # Create solution file
+dotnet new list                     # List available templates
+
+Build and Run Commands
+
+dotnet build                         # Build project/solution
+dotnet build --configuration Release # Build in Release mode
+dotnet build --no-restore            # Build without restoring
+dotnet run                           # Run the project
+dotnet run --configuration Release   # Run in Release mode
+dotnet run --no-build                # Run without rebuilding
+dotnet clean                         # Clean build outputs
+
+Package and Dependency Management
+
+dotnet restore                       # Restore dependencies
+dotnet add package Newtonsoft.Json   # Add NuGet package
+dotnet add reference ../MyLib/MyLib.csproj  # Add project reference
+dotnet remove package Newtonsoft.Json # Remove package
+dotnet list package                  # List installed packages
+dotnet nuget locals --list all       # List NuGet cache locations
+dotnet nuget locals --clear all      # Clear NuGet cache
+
+Testing Commands
+
+dotnet test                          # Run all tests
+dotnet test --filter "Category=Integration"  # Run filtered tests
+dotnet test --logger "console;verbosity=detailed"  # Detailed output
+dotnet test --collect:"Code Coverage"  # Collect code coverage
+
+Publishing and Deployment
+
+dotnet publish                       # Publish for deployment
+dotnet publish --configuration Release
+dotnet publish --self-contained true  # Include runtime
+dotnet publish --runtime win-x64     # Platform-specific publish
+dotnet publish --output ./publish/   # Specify output directory
+
+Solution Management
+
+dotnet sln add MyProject.csproj      # Add project to solution
+dotnet sln remove MyProject.csproj   # Remove project from solution
+dotnet sln list                      # List projects in solution
+
+Tool Management
+
+dotnet tool install -g dotnet-ef     # Install global tool
+dotnet tool update -g dotnet-ef      # Update global tool
+dotnet tool list -g                  # List installed tools
+dotnet tool uninstall -g dotnet-ef   # Uninstall tool
+
+EF Core Commands (with EF Core Tools installed)
+
+dotnet ef migrations add InitialCreate
+dotnet ef migrations remove
+dotnet ef database update
+dotnet ef dbcontext scaffold
+dotnet ef migrations list
+
+Utility Commands
+
+dotnet --info                        # Display .NET information
+dotnet --version                     # Show .NET SDK version
+dotnet --list-sdks                   # List installed SDKs
+dotnet --list-runtimes               # List installed runtimes
+
+dotnet workload install wasm-tools   # Install workload
+dotnet workload list                 # List installed workloads
+
+dotnet format                        # Format code
+dotnet format --verify-no-changes    # Check formatting
+dotnet format --include *.cs         # Format specific files
+
+Advanced Build Commands
+
+dotnet pack                          # Create NuGet package
+dotnet pack --configuration Release
+dotnet pack --output ./nupkgs/
+
+dotnet msbuild                       # Use MSBuild directly
+dotnet build-server shutdown         # Shutdown build server
+
+Debug and Diagnostics
+
+dotnet watch run                     # Run with hot reload
+dotnet watch test                    # Run tests on file change
+dotnet watch --project ./MyProject run
+
+dotnet trace collect                 # Collect trace
+dotnet counters monitor              # Monitor performance counters
+dotnet-dump collect                  # Collect memory dump
+
+----------------------------------------------------
+dotnet new
+Creates a new project, solution, or file from a template
+Examples: dotnet new console -o MyApp
+dotnet new webapi
+dotnet new list (see all templates)
+dotnet restore
+Restores NuGet packages / dependencies
+(usually runs automatically, but you can force it)
+dotnet build
+Compiles the project and dependencies
+Examples: dotnet build
+dotnet build -c Release
+dotnet run
+Builds (if needed) and runs the application
+Examples: dotnet run
+dotnet run --project MyApp.Web
+dotnet watch
+Runs the app and auto-restarts/rebuilds on file changes (hot reload)
+Example: dotnet watch run
+dotnet test
+Builds and runs unit/integration tests
+Examples: dotnet test
+dotnet test --filter Category=Integration
+dotnet publish
+Builds and packages the app for deployment
+Example: dotnet publish -c Release -o ./publish
+dotnet clean
+Deletes build artifacts (bin/obj folders)
+Example: dotnet clean
+dotnet pack
+Creates a NuGet package (.nupkg) from the project
+Example: dotnet pack -c Release
+dotnet sln
+Manages .sln solution files (add/remove projects)
+Examples: dotnet sln add MyProject.csproj
+dotnet sln list
+dotnet add package
+Adds a NuGet package to the project
+Example: dotnet add package Microsoft.EntityFrameworkCore
+dotnet remove package
+Removes a NuGet package from the project
+Example: dotnet remove package Swashbuckle.AspNetCore
+dotnet add reference
+Adds a project reference (to another .csproj)
+Example: dotnet add reference ../MyLib/MyLib.csproj
+dotnet list package
+Shows all NuGet packages (with versions)
+Example: dotnet list package --include-transitive
+dotnet tool install
+Installs a global or local .NET tool
+Example: dotnet tool install -g dotnet-ef
+dotnet tool list
+Lists installed .NET tools
+Example: dotnet tool list -g
+dotnet --info
+Shows detailed info about installed SDKs, runtimes, environment
+dotnet --list-sdks
+Lists all installed .NET SDK versions
+dotnet --list-runtimes
+Lists all installed .NET runtimes
+dotnet workload install
+Installs optional workloads (maui, android, ios, wasm-tools, etc.)
+Example: dotnet workload install maui
+dotnet workload list
+Shows installed workloads
+dotnet format
+Formats code according to .editorconfig
+Example: dotnet format
+dotnet ef
+Entity Framework Core CLI commands (requires dotnet-ef tool)
+Examples: dotnet ef migrations add InitialCreate
