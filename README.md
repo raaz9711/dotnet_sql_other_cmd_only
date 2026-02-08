@@ -1,0 +1,1 @@
+# dotnet_sql_other_cmd_only
