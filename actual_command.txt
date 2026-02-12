@@ -1,0 +1,24 @@
+mkdir -p src && dotnet new sln -n PortfolioBlog
+
+dotnet new webapi -n PortfolioBlog.API -o src/PortfolioBlog.API
+
+dotnet new classlib -n PortfolioBlog.Core -o src/PortfolioBlog.Core
+
+dotnet new classlib -n PortfolioBlog.Infrastructure -o src/PortfolioBlog.Infrastructure
+--Linking .NET projects 
+dotnet sln add src/PortfolioBlog.API/PortfolioBlog.API.csproj src/PortfolioBlog.Core/PortfolioBlog.Core.csproj src/PortfolioBlog.Infrastructure/PortfolioBlog.Infrastructure.csproj
+
+
+dotnet add src/PortfolioBlog.API/PortfolioBlog.API.csproj reference src/PortfolioBlog.Infrastructure/PortfolioBlog.Infrastructure.csproj src/PortfolioBlog.Core/PortfolioBlog.Core.csproj
+
+dotnet add src/PortfolioBlog.Infrastructure/PortfolioBlog.Infrastructure.csproj reference src/PortfolioBlog.Core/PortfolioBlog.Core.csproj
+
+npx -y @angular/cli@next new PortfolioBlog.Client --directory src/PortfolioBlog.Client --style css --routing --ssr false --skip-git
+
+dotnet ef migrations add InitialCreate --project src/PortfolioBlog.Infrastructure --startup-project src/PortfolioBlog.API --context PortfolioBlog.Infrastructure.Data.AppDbContext
+
+dotnet build src/PortfolioBlog.API/PortfolioBlog.API.csproj
+
+
+
+docker-compose build
